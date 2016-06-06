@@ -6,12 +6,12 @@ Glug alert
 Glug autogen
 Glug blaze plugin[mappings]=',b'
 Glug blazedeps
-Glug codefmt plugin[mappings]
+Glug codefmt
 Glug codefmt-google
 Glug corpweb plugin[mappings]=',w'
 Glug coverage
 Glug coverage-google !plugin[autocmds]
-Glug critique plugin[mappings]
+Glug critique
 Glug easygoogle
 Glug fileswitch plugin[mappings]=',f'
 Glug findinc
@@ -27,12 +27,19 @@ Glug ultisnips-google
 Glug whitespace highlight
 Glug youcompleteme-google
 
-autocmd FileType bzl AutoFormatBuffer buildifier
-
 " Init easygoogle.
 call easygoogle#rc()
 
 :Glaive codefmt clang_format_style='file'
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType jslayout AutoFormatBuffer jslfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType python AutoFormatBuffer pyformat
+  autocmd FileType markdown AutoFormatBuffer mdformat
+augroup END
 
 " Key bindings for Google-specific plugins.
 nnoremap ,o :GoogleOutlineWindow<cr>
