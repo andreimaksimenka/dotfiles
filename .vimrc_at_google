@@ -8,6 +8,7 @@ Glug blaze plugin[mappings]=',b'
 Glug blazedeps
 Glug codefmt plugin[mappings]
 Glug codefmt-google
+Glug corpweb plugin[mappings]=',w'
 Glug coverage
 Glug coverage-google !plugin[autocmds]
 Glug critique plugin[mappings]
@@ -34,7 +35,6 @@ call easygoogle#rc()
 :Glaive codefmt clang_format_style='file'
 
 " Key bindings for Google-specific plugins.
-nnoremap <leader>o :GoogleOutlineWindow<cr>
-nnoremap <leader>gd  :<c-u>GrokDef<cr><cr>:lr<cr>
-nnoremap <leader>gr  :<c-u>GrokRef<cr><cr>:lr<cr>
-nnoremap <leader>cs :CorpWebCsFile
+nnoremap ,o :GoogleOutlineWindow<cr>
+nnoremap ,gd  :<c-u>GrokDef<cr><cr>:lr<cr>
+nnoremap ,gr  :<c-u>GrokRef<cr><cr>:lr<cr>
