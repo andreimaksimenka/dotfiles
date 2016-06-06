@@ -1,0 +1,17 @@
+[diff]
+command = difftool
+
+[mail]
+description-from-git = True
+
+[export]
+description-from-git = True
+
+[track]
+ignore-pending-commits = True
+
+[overlay]
+ignore-pending-commits = True
+
+[submit]
+no-questions = True

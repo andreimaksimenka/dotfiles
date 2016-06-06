@@ -1,0 +1,18 @@
+[core]
+excludesfile = /usr/local/google/home/amaksimenka/.gitignore_global
+
+[alias]
+meld = git-meld
+
+[merge]
+tool = vimdiff
+conflictstyle = diff3
+
+[diff]
+tool = vimdiff
+
+[mergetool]
+prompt = false
+
+[difftool]
+prompt = false
