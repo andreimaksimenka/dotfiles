@@ -27,10 +27,6 @@ Glug ultisnips-google
 Glug whitespace highlight
 Glug youcompleteme-google
 
-" Init easygoogle.
-call easygoogle#rc()
-
-:Glaive codefmt clang_format_style='file'
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
   autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
@@ -40,6 +36,11 @@ augroup autoformat_settings
   autocmd FileType python AutoFormatBuffer pyformat
   autocmd FileType markdown AutoFormatBuffer mdformat
 augroup END
+
+:Glaive codefmt clang_format_style='file'
+
+" Init easygoogle.
+call easygoogle#rc()
 
 " Key bindings for Google-specific plugins.
 nnoremap ,o :GoogleOutlineWindow<cr>
