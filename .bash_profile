@@ -1,3 +1,4 @@
+export TERM="screen-256color"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -21,10 +22,10 @@ alias tmx="side-channel -t gr amaksimenka-linux.sea.corp.google.com"
 
 source /Users/amaksimenka/.bazel/bin/bazel-complete.bash
 source ~/.cargo/env
-source ~/.bashrc
 
 # MacPorts Installer addition on 2016-02-10_at_09:29:22: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
