@@ -20,11 +20,11 @@ call plug#begin(s:editor_root . "/plugged")
 
 " Vim enhancements
 Plug 'KuoE0/vim-scavenger'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'easymotion/vim-easymotion'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ervandew/supertab'
