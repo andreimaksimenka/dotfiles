@@ -62,11 +62,11 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-" If not at Google.
 if !filereadable(expand('~/.at_google'))
-  " Non-Google only
+  " If not at Google.
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --racer-completer' }
   Plug 'google/vim-codefmt'
+  Plug 'google/vim-glaive'
   Plug 'google/vim-maktaba'
   Plug 'scrooloose/syntastic'
 endif
@@ -79,10 +79,16 @@ if plug_installed == 0
     :PlugInstall
 endif
 
-if filereadable(expand('~/.at_google'))
+if !filereadable(expand('~/.at_google'))
+  " If not at Google.
+  call glaive#Install()
+  Glaive codefmt plugin[mappings]
+else
   " Google-only
   source ~/.vimrc_at_google
 endif
+
+:Glaive codefmt clang_format_style='file'
 
 " Set the light background
 highlight Normal ctermfg=black ctermbg=white
@@ -294,5 +300,10 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+
+" Runs ClangFormat for CC files. This is better than AutoFormatBuffer because it
+" leaves unchanged lines.
+autocmd BufWritePre *.cc :ClangFormat
+autocmd BufWritePre *.h :ClangFormat
 
 filetype plugin indent on

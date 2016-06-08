@@ -6,7 +6,7 @@ Glug alert
 Glug autogen
 Glug blaze plugin[mappings]=',b'
 Glug blazedeps
-Glug codefmt
+Glug codefmt plugin[mappings]
 Glug codefmt-google
 Glug corpweb plugin[mappings]=',w'
 Glug coverage
@@ -27,17 +27,16 @@ Glug ultisnips-google
 Glug whitespace highlight
 Glug youcompleteme-google
 
-augroup autoformat_settings
-  autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-  autocmd FileType java AutoFormatBuffer google-java-format
-  autocmd FileType jslayout AutoFormatBuffer jslfmt
-  autocmd FileType go AutoFormatBuffer gofmt
-  autocmd FileType python AutoFormatBuffer pyformat
-  autocmd FileType markdown AutoFormatBuffer mdformat
-augroup END
-
-:Glaive codefmt clang_format_style='file'
+autocmd FileType bzl AutoFormatBuffer buildifier
+" augroup autoformat_settings
+"   autocmd FileType bzl AutoFormatBuffer buildifier
+"   autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+"   autocmd FileType java AutoFormatBuffer google-java-format
+"   autocmd FileType jslayout AutoFormatBuffer jslfmt
+"   autocmd FileType go AutoFormatBuffer gofmt
+"   autocmd FileType python AutoFormatBuffer pyformat
+"   autocmd FileType markdown AutoFormatBuffer mdformat
+" augroup END
 
 " Init easygoogle.
 call easygoogle#rc()
@@ -46,3 +45,4 @@ call easygoogle#rc()
 nnoremap ,o :GoogleOutlineWindow<cr>
 nnoremap ,gd  :<c-u>GrokDef<cr><cr>:lr<cr>
 nnoremap ,gr  :<c-u>GrokRef<cr><cr>:lr<cr>
+map ,cf :pyf /google/data/ro/users/kr/kramerb/include_fixer/clang-include-fixer.py<cr>
