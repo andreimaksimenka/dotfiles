@@ -155,7 +155,7 @@ highlight LineNr ctermfg=grey
 
 " Enable color column at the 80 character boundary and set color to grey.
 set colorcolumn=81
-highlight ColorColumn ctermbg=grey
+highlight ColorColumn ctermbg=188
 
 " Plugin settings
 
