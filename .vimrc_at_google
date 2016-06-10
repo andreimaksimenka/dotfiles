@@ -41,6 +41,8 @@ autocmd FileType bzl AutoFormatBuffer buildifier
 " Init easygoogle.
 call easygoogle#rc()
 
+:Glaive codefmt clang_format_style='file'
+
 " Key bindings for Google-specific plugins.
 nnoremap ,o :GoogleOutlineWindow<cr>
 nnoremap ,gd  :<c-u>GrokDef<cr><cr>:lr<cr>

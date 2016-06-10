@@ -28,7 +28,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'edkolev/promptline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ervandew/supertab'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'ggreer/the_silver_searcher'
 Plug 'gregsexton/gitv'
 Plug 'jiangmiao/auto-pairs'
@@ -39,8 +39,8 @@ Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'mileszs/ack.vim'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'racer-rust/vim-racer'
-Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'ryanoasis/nerd-fonts'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
@@ -87,8 +87,6 @@ else
   " Google-only
   source ~/.vimrc_at_google
 endif
-
-:Glaive codefmt clang_format_style='file'
 
 " Set the light background
 highlight Normal ctermfg=black ctermbg=white
