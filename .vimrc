@@ -65,7 +65,9 @@ Plug 'xolox/vim-session'
 if !filereadable(expand('~/.at_google'))
   " If not at Google.
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --racer-completer' }
-  Plug 'google/vim-codefmt'
+  if has('nvim')
+   Plug 'google/vim-codefmt'
+  endif
   Plug 'google/vim-glaive'
   Plug 'google/vim-maktaba'
   Plug 'scrooloose/syntastic'
@@ -82,7 +84,9 @@ endif
 if !filereadable(expand('~/.at_google'))
   " If not at Google.
   call glaive#Install()
-  Glaive codefmt plugin[mappings]
+  if has('nvim')
+    Glaive codefmt plugin[mappings]
+  endif
 else
   " Google-only
   source ~/.vimrc_at_google
