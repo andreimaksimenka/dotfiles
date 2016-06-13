@@ -174,10 +174,15 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 " Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_auto_loc_list = 1
 " The location list is really convenient, and I always want to use it.
 " (Don't forget that vim-unimpaired makes it even nicer!)
 let g:syntastic_always_populate_loc_list = 1
-" Not sure why I'd ever want my syntax checked when I'm quitting...
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go']  }
