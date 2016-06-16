@@ -112,7 +112,7 @@ set autoread
 set background=light
 set backspace=indent,eol,start
 set bufhidden=delete
-set clipboard=unnamed,unnamedplus
+set clipboard+=unnamedplus
 set completeopt=longest,menuone
 set directory=~/.vimswp
 set expandtab
