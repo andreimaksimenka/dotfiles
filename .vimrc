@@ -25,7 +25,7 @@ Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'easymotion/vim-easymotion'
-Plug 'edkolev/promptline.vim'
+Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot' }
 Plug 'edkolev/tmuxline.vim'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -37,10 +37,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-Plug 'rking/ag.vim'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'ryanoasis/nerd-fonts'
 Plug 'ryanoasis/vim-devicons'
@@ -48,7 +47,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch', { 'on': 'Dispatch' }
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -312,7 +311,7 @@ augroup reload_vimrc " {
 augroup END " }
 
 " Runs ClangFormat for CC files. This is better than AutoFormatBuffer because it
-" leaves unchanged lines.
+ leaves unchanged lines.
 autocmd BufWritePre *.cc :ClangFormat
 autocmd BufWritePre *.h :ClangFormat
 
