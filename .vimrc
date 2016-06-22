@@ -311,8 +311,8 @@ augroup reload_vimrc " {
 augroup END " }
 
 " Runs ClangFormat for CC files. This is better than AutoFormatBuffer because it
- leaves unchanged lines.
-autocmd BufWritePre *.cc :ClangFormat
-autocmd BufWritePre *.h :ClangFormat
+" leaves unchanged lines.
+autocmd BufWritePre *.cc :FormatCode
+autocmd BufWritePre *.h :FormatCode
 
 filetype plugin indent on
