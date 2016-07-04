@@ -291,6 +291,10 @@ let g:indent_guides_start_level = 2
 hi IndentGuidesOdd  ctermbg=grey
 hi IndentGuidesEven ctermbg=188
 
+if has('nvim')
+let g:chomatica#respnsive_mode=1
+endif
+
 " General key shortcuts.
 nnoremap <leader>jd :YcmCompleter GoTo<cr>
 nnoremap <leader>bd :bufdo bd!<cr>
