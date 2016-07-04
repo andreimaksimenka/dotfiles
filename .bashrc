@@ -5,7 +5,14 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-export TERM="screen-256color"
+# Set the terminal correctly depending on whether tmux is used so that keys
+# work correctly in vim.
+if [ -n "${TMUX}" ]; then
+    # In TMUX
+    export TERM="screen-256color"
+else
+    export TERM="xterm-256color"
+fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -34,11 +41,6 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color:xterm-256color:screen-256color) color_prompt=yes;;
-esac
-
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -55,22 +57,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -85,7 +71,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias gcdev='gcutil --clustermanager=dev --project=google.com:$USER-devconsole'
+# Stop terminal from sendind XOFF when Ctrl-S is pressed.
+stty stop undef
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -107,14 +94,13 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export P4CONFIG=.p4config
 export P4EDITOR=$EDITOR
 export G4MULTIDIFF=1
 export P4DIFF=/google/data/ro/users/lo/lodato/git-multi-diff
 export P4MERGE=meldmerge.sh
 export PATH=~/bin:$PATH:$HOME/gsutil:$HOME/.local/bin:~/android-studio
-export meld_has_output_option=1
 
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
@@ -126,13 +112,24 @@ source /usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc
 # The next line enables bash completion for gcloud.
 source /usr/local/google/home/amaksimenka/google-cloud-sdk/completion.bash.inc
 
-source ~/.shell_prompt.sh
+if [ -f ~/.shell_prompt.sh ]; then
+    . ~/.shell_prompt.sh
+fi
 
 git() { if [[ $1 == 'merge'  ]]; then echo 'Use git5 merge, not git merge. git merge does not understand how to merge the READONLY link and it can corrupt your branch, so stay away from it.  type "unset -f git" to remove this warning'; else command git "$@"; fi;  }
 
-stty stop undef
+# Linuxbrew
 export PATH="/usr/local/google/home/amaksimenka/.linuxbrew/bin:$PATH"
 export MANPATH="/usr/local/google/home/amaksimenka/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/usr/local/google/home/amaksimenka/.linuxbrew/share/info:$INFOPATH"
+export GOPATH=~/goproj
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Java stuff
+export JAVABIN=/usr/bin/java
+
+# Rust stuff
+export PATH="/usr/local/google/home/amaksimenka/.cargo/bin:$PATH"
+export CARGO_HOME="/usr/local/google/home/amaksimenka/.cargo"
+export RUST_SRC_PATH=$HOME/github/rust/src
