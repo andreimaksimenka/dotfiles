@@ -31,6 +31,7 @@ Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'ggreer/the_silver_searcher'
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+Plug 'jebaum/neosyntax'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
