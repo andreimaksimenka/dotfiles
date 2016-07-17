@@ -62,11 +62,21 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
+let enable_deoplete=0
+
 if !filereadable(expand('~/.at_google'))
+  function! DoRemote(arg)
+    UpdateRemotePlugins
+  endfunction
   " If not at Google.
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --racer-completer' }
   if has('nvim')
-   Plug 'google/vim-codefmt'
+    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+    Plug 'Shougo/neoinclude.vim'
+    Plug 'google/vim-codefmt'
+    Plug 'zchee/deoplete-clang'
+    let enable_deoplete=1
+  else
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --racer-completer' }
   endif
   Plug 'google/vim-glaive'
   Plug 'google/vim-maktaba'
@@ -293,6 +303,12 @@ hi IndentGuidesEven ctermbg=188
 
 if has('nvim')
 let g:chomatica#respnsive_mode=1
+endif
+
+if enable_deoplete == 1
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#sources#clang#libclang_path = "/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
+  let g:deoplete#sources#clang#clang_header = "/Library/Developer/CommandLineTools/usr/lib/clang/7.3.0/include"
 endif
 
 " General key shortcuts.
