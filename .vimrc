@@ -41,7 +41,6 @@ Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'ryanoasis/nerd-fonts'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -105,9 +104,6 @@ else
   " Google-only
   source ~/.vimrc_at_google
 endif
-
-" Set the light background
-highlight Normal ctermfg=black ctermbg=white
 
 " Format options (full list at ":help fo-table"; see also ":help 'fo'")
 " Change between += and -= to toggle an option
