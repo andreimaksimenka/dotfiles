@@ -94,7 +94,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export EDITOR='nvim'
+export EDITOR='vim'
 export P4CONFIG=.p4config
 export P4EDITOR=$EDITOR
 export G4MULTIDIFF=1
@@ -105,12 +105,6 @@ export PATH=~/bin:$PATH:$HOME/gsutil:$HOME/.local/bin:~/android-studio
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 export LANG LC_ALL
-
-# The next line updates PATH for the Google Cloud SDK.
-source /usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc
-
-# The next line enables bash completion for gcloud.
-source /usr/local/google/home/amaksimenka/google-cloud-sdk/completion.bash.inc
 
 if [ -f ~/.shell_prompt.sh ]; then
     . ~/.shell_prompt.sh
@@ -130,6 +124,21 @@ export GOPATH=~/goproj
 export JAVABIN=/usr/bin/java
 
 # Rust stuff
-export PATH="/usr/local/google/home/amaksimenka/.cargo/bin:$PATH"
-export CARGO_HOME="/usr/local/google/home/amaksimenka/.cargo"
-export RUST_SRC_PATH=$HOME/github/rust/src
+#export PATH="/usr/local/google/home/amaksimenka/.cargo/bin:$PATH"
+#export CARGO_HOME="/usr/local/google/home/amaksimenka/.cargo"
+#export RUST_SRC_PATH=$HOME/github/rust/src
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc ]; then
+  source '/usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /usr/local/google/home/amaksimenka/google-cloud-sdk/completion.bash.inc ]; then
+  source '/usr/local/google/home/amaksimenka/google-cloud-sdk/completion.bash.inc'
+fi
+
+[ -f ~/fzf-extras.bash ] && source ~/fzf-extras.sh
+
+# Setting ag as the default source for fzf
+export FZF_DEFAULT_COMMAND='ag -g ""'
