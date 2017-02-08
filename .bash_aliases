@@ -1,11 +1,11 @@
 alias iwyu='/google/src/head/depot/google3/devtools/maintenance/include_what_you_use/iwyu.py'
-alias iwyucl='~/bin/iwyucl.sh'
 alias fixdepscl='~/bin/fixdepscl.sh'
 alias g5='/google/data/ro/projects/shelltoys/g5.sar'
 alias dc='sudo sh -c "sync; echo 3 > /proc/sys/vm/drop_caches"'
 alias fixdeps='/home/build/devtools/blazeutils/fixdeps_main.par'
 alias pa='prodaccess -g'
-alias d='cd /usr/local/google/home/amaksimenka/diskless/google3'
+alias d='cd /usr/local/google/home/amaksimenka/d/google3'
 alias rmorig='find . -type f -name '*.orig' -delete'
 alias fuck='$(thefuck $(fc -ln -1))'
 alias iblaze=/google/data/ro/teams/iblaze/iblaze
+alias buildfix='/google/data/ro/teams/ads-integrity/buildfix'
