@@ -6,6 +6,5 @@ alias fixdeps='/home/build/devtools/blazeutils/fixdeps_main.par'
 alias pa='prodaccess -g'
 alias d='cd /usr/local/google/home/amaksimenka/d/google3'
 alias rmorig='find . -type f -name '*.orig' -delete'
-alias fuck='$(thefuck $(fc -ln -1))'
 alias iblaze=/google/data/ro/teams/iblaze/iblaze
 alias buildfix='/google/data/ro/teams/ads-integrity/buildfix'

@@ -82,43 +82,27 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+    source /etc/bash_completion
 fi
 
-export EDITOR='vim'
-export P4CONFIG=.p4config
-export P4EDITOR=$EDITOR
-export G4MULTIDIFF=1
-export P4DIFF=/google/data/ro/users/lo/lodato/git-multi-diff
-export P4MERGE=meldmerge.sh
-export PATH=~/bin:$PATH:$HOME/gsutil:$HOME/.local/bin:~/android-studio
-
-LANG=en_US.UTF-8
-LC_ALL=en_US.UTF-8
-export LANG LC_ALL
-
-if [ -f ~/.shell_prompt.sh ]; then
-    . ~/.shell_prompt.sh
-fi
+[ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh
 
 git() { if [[ $1 == 'merge'  ]]; then echo 'Use git5 merge, not git merge. git merge does not understand how to merge the READONLY link and it can corrupt your branch, so stay away from it.  type "unset -f git" to remove this warning'; else command git "$@"; fi;  }
 
-# Linuxbrew
-export PATH="/usr/local/google/home/amaksimenka/.linuxbrew/bin:$PATH"
-export MANPATH="/usr/local/google/home/amaksimenka/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/usr/local/google/home/amaksimenka/.linuxbrew/share/info:$INFOPATH"
-export GOPATH=~/goproj
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc ]; then
+  source '/usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc'
+fi
+
+[ -f ~/fzf-extras.bash ] && source ~/fzf-extras.sh
 
 # Java stuff
 export JAVABIN=/usr/bin/java
@@ -128,17 +112,23 @@ export JAVABIN=/usr/bin/java
 #export CARGO_HOME="/usr/local/google/home/amaksimenka/.cargo"
 #export RUST_SRC_PATH=$HOME/github/rust/src
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc ]; then
-  source '/usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc'
-fi
+# Linuxbrew
+export PATH="/usr/local/google/home/amaksimenka/.linuxbrew/bin:$PATH"
+export MANPATH="/usr/local/google/home/amaksimenka/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/usr/local/google/home/amaksimenka/.linuxbrew/share/info:$INFOPATH"
+export GOPATH=~/goproj
 
-# The next line enables shell command completion for gcloud.
-if [ -f /usr/local/google/home/amaksimenka/google-cloud-sdk/completion.bash.inc ]; then
-  source '/usr/local/google/home/amaksimenka/google-cloud-sdk/completion.bash.inc'
-fi
+export EDITOR='vim'
+export P4CONFIG=.p4config
+export P4EDITOR=$EDITOR
+export G4MULTIDIFF=1
+export P4DIFF=/google/data/ro/users/lo/lodato/git-multi-diff
+export P4MERGE=meldmerge.sh
+export PATH=~/bin:$PATH
 
-[ -f ~/fzf-extras.bash ] && source ~/fzf-extras.sh
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+export LANG LC_ALL
 
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g ""'
