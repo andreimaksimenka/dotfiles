@@ -3,10 +3,12 @@
 mkdir ~/github
 cd ~/github
 
-1# Install nerd-fonts
+# Install nerd-fonts
 git clone https://github.com/ryanoasis/nerd-fonts.git
 cd ~/github/nerd-fonts
 ./install.sh
+gconftool-2 --set /apps/gnome-terminal/profiles/Default/use_system_font --type=boolean false
+gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "InconsolataForPowerline Nerd Font Medium 13"
 
 # Install Linuxbrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
