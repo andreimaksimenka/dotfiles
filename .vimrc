@@ -19,6 +19,7 @@ endif
 call plug#begin(s:editor_root . "/plugged")
 
 " Vim enhancements
+Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'KuoE0/vim-scavenger'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Valloric/ListToggle'
@@ -296,6 +297,9 @@ let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 hi IndentGuidesOdd  ctermbg=grey
 hi IndentGuidesEven ctermbg=188
+
+" vim-bracketed-paste
+let g:bracketed_paste_tmux_wrap = 1
 
 if has('nvim')
 let g:chomatica#respnsive_mode=1
