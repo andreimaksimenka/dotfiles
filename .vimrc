@@ -21,7 +21,6 @@ call plug#begin(s:editor_root . "/plugged")
 " Vim enhancements
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'KuoE0/vim-scavenger'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
