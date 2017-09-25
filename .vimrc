@@ -163,6 +163,7 @@ endif
 
 " Enable line numbers and set color to grey.
 set number
+set relativenumber
 highlight LineNr ctermfg=grey
 
 " Enable color column at the 80 character boundary and set color to grey.
