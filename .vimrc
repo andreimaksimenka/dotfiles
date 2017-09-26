@@ -42,8 +42,6 @@ Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch', { 'on': 'Dispatch' }
@@ -315,7 +313,6 @@ endif
 nnoremap <leader>jd :YcmCompleter GoTo<cr>
 nnoremap <leader>bd :bufdo bd!<cr>
 nnoremap <leader>ct :checktime<cr>
-nnoremap <leader>n :NERDTreeToggle<cr>
 nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <leader>m :Tags<cr>
