@@ -42,6 +42,7 @@ Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch', { 'on': 'Dispatch' }
@@ -318,6 +319,8 @@ nnoremap <leader>ct :checktime<cr>
 nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <leader>m :Tags<cr>
+nnoremap <leader>nf :NERDTreeFind<cr>
+nnoremap <leader>nt :NERDTreeToggle<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <c-\> :execute 'Ack ' . expand('<cword>')<cr>
 " Jump to next/previous error in the location window.
