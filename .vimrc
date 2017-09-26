@@ -123,11 +123,13 @@ set clipboard+=unnamedplus
 set completeopt=longest,menuone
 set directory=~/.vimswp
 set expandtab
+set foldmethod=syntax
 set hidden
 set history=500
 set ignorecase
 set laststatus=2
 set listchars=tab:>-,trail:.,precedes:<,extends:>
+set nofoldenable
 set nolist
 set noro
 set noswapfile
