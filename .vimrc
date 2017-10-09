@@ -31,6 +31,7 @@ Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'ggreer/the_silver_searcher'
 Plug 'gregsexton/gitv', { 'on': 'Gitv' }
+Plug 'haya14busa/incsearch.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -319,22 +320,30 @@ nnoremap <leader>ct :checktime<cr>
 nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <leader>m :Tags<cr>
-nnoremap <leader>nf :NERDTreeFind<cr>
-nnoremap <leader>nt :NERDTreeToggle<cr>
+nnoremap <leader>n :NERDTreeFind<cr>
+nnoremap <c-n> :NERDTreeToggle<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <c-\> :execute 'Ack ' . expand('<cword>')<cr>
+
 " Jump to next/previous error in the location window.
 nnoremap <c-j>  :lne<cr>
 nnoremap <c-k>  :lpr<cr>
+
 " Reselect after indent so it can easily be repeated.
 vnoremap < <gv
 vnoremap > >gv
 
-" Auto-reload this file when it's saved.
-augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
+" incsearch.vim
+let g:incsearch#auto_nohlsearch = 1
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 " Runs ClangFormat for CC files. This is better than AutoFormatBuffer because it
 " leaves unchanged lines.
