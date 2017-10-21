@@ -224,9 +224,14 @@ let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 let g:lt_height = 10
 
-" If ag is available use it as grepprg instead of 'find'
-if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor
+if executable("rg")
+  set grepprg=rg\ --vimgrep
+  let g:ackprg = 'rg --vimgrep'
+else
+  if executable("ag")
+    set grepprg=ag\ --vimgrep
+    let g:ackprg = 'ag --vimgrep'
+  endif
 endif
 
 " vim-go
@@ -241,9 +246,6 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
-" the_silver_searcher
-let g:ackprg = 'ag --vimgrep'
 
 " Auto reformat Rust when saving.
 let g:rustfmt_autosave = 0
