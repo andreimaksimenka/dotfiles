@@ -326,6 +326,7 @@ nnoremap <leader>n :NERDTreeFind<cr>
 nnoremap <c-n> :NERDTreeToggle<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <c-\> :execute 'Ack ' . expand('<cword>')<cr>
+nnoremap <c-p> :BLines<cr>
 
 " Jump to next/previous error in the location window.
 nnoremap <c-j>  :lne<cr>
