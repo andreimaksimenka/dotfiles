@@ -25,7 +25,7 @@ Glug relatedfiles plugin[mappings]=',r'
 Glug syntastic-google
 Glug ultisnips-google
 Glug whitespace highlight
-Glug youcompleteme-google
+"Glug youcompleteme-google
 
 autocmd FileType bzl AutoFormatBuffer buildifier
 " augroup autoformat_settings

@@ -20,7 +20,6 @@ call plug#begin(s:editor_root . "/plugged")
 
 " Vim enhancements
 Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'KuoE0/vim-scavenger'
 Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
@@ -61,22 +60,20 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-let enable_deoplete=0
+if has("python3")
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  Plug 'zchee/deoplete-clang'
+  let g:deoplete#enable_at_startup = 1
+endif
 
 if !filereadable(expand('~/.at_google'))
-  function! DoRemote(arg)
-    UpdateRemotePlugins
-  endfunction
-  " If not at Google.
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-    Plug 'Shougo/neoinclude.vim'
-    Plug 'google/vim-codefmt'
-    Plug 'zchee/deoplete-clang'
-    let enable_deoplete=1
-  else
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --racer-completer' }
-  endif
+  Plug 'google/vim-codefmt'
   Plug 'google/vim-glaive'
   Plug 'google/vim-maktaba'
   Plug 'scrooloose/syntastic'
@@ -165,7 +162,7 @@ endif
 
 " Enable line numbers and set color to grey.
 set number
-set relativenumber
+"set relativenumber
 highlight LineNr ctermfg=grey
 
 " Enable color column at the 80 character boundary and set color to grey.
@@ -201,18 +198,6 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go']  }
 let g:syntastic_warning_symbol="⚠️ "
 let g:syntastic_error_symbol="🚫 "
 let g:go_list_type = "quickfix"
-
-" YouCompleteMe
-let g:ycm_complete_in_comments = 1
-" Start autocompleting right away, after a single character!
-let g:ycm_min_num_of_chars_for_completion = 1
-" This gives me nice autocompletion for C++ #include's if I change vim's working
-" directory to the project root.
-let g:ycm_filepath_completion_use_working_dir = 1
-" Add programming language keywords to the autocomplete list.
-let g:ycm_seed_identifiers_with_syntax = 1
-" Set the Rust source path
-let g:ycm_rust_src_path=expand("~/github/rust-master/src/")
 
 " vim-session
 let g:session_autosave = 'yes'
@@ -307,12 +292,6 @@ let g:bracketed_paste_tmux_wrap = 1
 
 if has('nvim')
 let g:chomatica#respnsive_mode=1
-endif
-
-if enable_deoplete == 1
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#sources#clang#libclang_path = "/Library/Developer/CommandLineTools/usr/lib/libclang.dylib"
-  let g:deoplete#sources#clang#clang_header = "/Library/Developer/CommandLineTools/usr/lib/clang/7.3.0/include"
 endif
 
 " General key shortcuts.
