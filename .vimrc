@@ -68,8 +68,12 @@ if has("python3")
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
+  Plug 'Shougo/neoinclude.vim'
   Plug 'zchee/deoplete-clang'
+
   let g:deoplete#enable_at_startup = 1
+  let g:deoplete#sources#clang#libclang_path = "~/.linuxbrew/lib/libclang.so"
+  let g:deoplete#sources#clang#clang_header = "~/.linuxbrew/include"
 endif
 
 if !filereadable(expand('~/.at_google'))
