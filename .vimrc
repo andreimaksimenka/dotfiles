@@ -1,10 +1,9 @@
-set nocompatible
 filetype off
 
 if has('nvim')
-    let s:editor_root=expand("~/.config/nvim")
+  let s:editor_root=expand("~/.config/nvim")
 else
-    let s:editor_root=expand("~/.vim")
+  let s:editor_root=expand("~/.vim")
 endif
 
 " Setting up Plug
@@ -50,8 +49,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-speeddating'
+"Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
@@ -67,13 +65,14 @@ if has("python3")
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
+    let g:deoplete#enable_yarp = 1
   endif
   Plug 'Shougo/neoinclude.vim'
-  Plug 'zchee/deoplete-clang'
+  "Plug 'zchee/deoplete-clang'
 
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#sources#clang#libclang_path = "~/.linuxbrew/lib/libclang.so"
-  let g:deoplete#sources#clang#clang_header = "~/.linuxbrew/include"
+  " let g:deoplete#sources#clang#libclang_path = "~/.linuxbrew/lib/libclang.so"
+  " let g:deoplete#sources#clang#clang_header = "~/.linuxbrew/include"
 endif
 
 if !filereadable(expand('~/.at_google'))
@@ -81,10 +80,9 @@ if !filereadable(expand('~/.at_google'))
   Plug 'google/vim-glaive'
   Plug 'google/vim-maktaba'
   Plug 'scrooloose/syntastic'
-endif
-
-if has('nvim')
-Plug 'arakashic/chromatica.nvim'
+  if has('nvim')
+    Plug 'arakashic/chromatica.nvim'
+  endif
 endif
 
 call plug#end()
@@ -132,6 +130,7 @@ set history=500
 set ignorecase
 set laststatus=2
 set listchars=tab:>-,trail:.,precedes:<,extends:>
+set nocompatible
 set nofoldenable
 set nolist
 set noro
@@ -330,6 +329,9 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Runs ClangFormat for CC files. This is better than AutoFormatBuffer because it
 " leaves unchanged lines.
