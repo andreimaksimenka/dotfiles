@@ -19,6 +19,7 @@ call plug#begin(s:editor_root . "/plugged")
 
 " Vim enhancements
 Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'sedm0784/vim-you-autocorrect'
 Plug 'Valloric/ListToggle'
 Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
@@ -58,22 +59,16 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-if has("python3")
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-    let g:deoplete#enable_yarp = 1
-  endif
-  Plug 'Shougo/neoinclude.vim'
-  "Plug 'zchee/deoplete-clang'
-
-  let g:deoplete#enable_at_startup = 1
-  " let g:deoplete#sources#clang#libclang_path = "~/.linuxbrew/lib/libclang.so"
-  " let g:deoplete#sources#clang#clang_header = "~/.linuxbrew/include"
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+  let g:deoplete#enable_yarp = 0
 endif
+Plug 'Shougo/neoinclude.vim'
+let g:deoplete#enable_at_startup = 1
 
 if !filereadable(expand('~/.at_google'))
   Plug 'google/vim-codefmt'
@@ -213,8 +208,8 @@ let g:lt_quickfix_list_toggle_map = '<leader>q'
 let g:lt_height = 10
 
 if executable("rg")
-  set grepprg=rg\ --vimgrep
-  let g:ackprg = 'rg --vimgrep'
+  set grepprg=ag\ --vimgrep
+  let g:ackprg = 'ag --vimgrep'
 else
   if executable("ag")
     set grepprg=ag\ --vimgrep

@@ -13,6 +13,7 @@ Glug coverage
 Glug coverage-google !plugin[autocmds]
 Glug critique
 Glug easygoogle
+call easygoogle#rc()
 Glug fileswitch plugin[mappings]=',f'
 Glug findinc
 Glug git5
@@ -37,9 +38,6 @@ autocmd FileType bzl AutoFormatBuffer buildifier
 "   autocmd FileType python AutoFormatBuffer pyformat
 "   autocmd FileType markdown AutoFormatBuffer mdformat
 " augroup END
-
-" Init easygoogle.
-call easygoogle#rc()
 
 :Glaive codefmt clang_format_style='file'
 
