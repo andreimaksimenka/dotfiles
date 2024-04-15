@@ -27,9 +27,6 @@ export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
 
 export RUST_SRC_PATH=/Users/amaksimenka/github/rust-master/src/
 
-alias amaks="kinit -R || kinit && ssh -Y amaksimenka-linux.sea.corp.google.com"
-alias tmx="side-channel -t gr amaksimenka-linux.sea.corp.google.com"
-
 # MacPorts Installer addition on 2016-02-10_at_09:29:22: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
