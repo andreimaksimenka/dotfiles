@@ -93,24 +93,16 @@ fi
 
 [ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh
 
-git() { if [[ $1 == 'merge'  ]]; then echo 'Use git5 merge, not git merge. git merge does not understand how to merge the READONLY link and it can corrupt your branch, so stay away from it.  type "unset -f git" to remove this warning'; else command git "$@"; fi;  }
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/fzf-extras.bash ] && source ~/fzf-extras.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc ]; then
   source '/usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc'
 fi
 
-[ -f ~/fzf-extras.bash ] && source ~/fzf-extras.sh
-
 # Java stuff
 export JAVABIN=/usr/bin/java
-
-# Rust stuff
-#export PATH="/usr/local/google/home/amaksimenka/.cargo/bin:$PATH"
-#export CARGO_HOME="/usr/local/google/home/amaksimenka/.cargo"
-#export RUST_SRC_PATH=$HOME/github/rust/src
 
 # Linuxbrew
 export PATH="/usr/local/google/home/amaksimenka/.linuxbrew/bin:$PATH"

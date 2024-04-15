@@ -15,7 +15,7 @@ if empty(glob(s:editor_root . "/autoload/plug.vim"))
     let plug_installed=0
 endif
 
-call plug#begin(s:editor_root . "/plugged")
+call plug#begin()
 
 " Vim enhancements
 Plug 'ConradIrwin/vim-bracketed-paste'

@@ -8,3 +8,6 @@ alias d='cd /usr/local/google/home/amaksimenka/d/google3'
 alias rmorig='find . -type f -name '*.orig' -delete'
 alias iblaze=/google/data/ro/teams/iblaze/iblaze
 alias buildfix='/google/data/ro/teams/ads-integrity/buildfix'
+alias bq=/google/bin/releases/bigquery-team/tools/bq.par
+alias helix_runner=/google/src/files/head/depot/google3/cloud/helix/tools/helix_runner
+alias cclean=/google/src/head/depot/google3/devtools/maintenance/cclean/cclean
