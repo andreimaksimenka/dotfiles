@@ -1,6 +1,6 @@
 " Google-specific plugins.
+source /usr/share/vim/google/glug/bootstrap.vim
 source /usr/share/vim/google/google.vim
-source /usr/share/vim/google/gtags.vim
 
 Glug alert
 Glug autogen
@@ -16,6 +16,7 @@ Glug easygoogle
 call easygoogle#rc()
 Glug fileswitch plugin[mappings]=',f'
 Glug findinc
+Glug fzf-query
 Glug git5
 Glug google-filetypes fold_filetypes+=blazebuild
 Glug google-logo blue=lightblue
@@ -26,7 +27,7 @@ Glug relatedfiles plugin[mappings]=',r'
 Glug syntastic-google
 Glug ultisnips-google
 Glug whitespace highlight
-"Glug youcompleteme-google
+Glug youcompleteme-google
 
 autocmd FileType bzl AutoFormatBuffer buildifier
 " augroup autoformat_settings
