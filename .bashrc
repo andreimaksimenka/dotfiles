@@ -92,7 +92,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 [ -f ~/.shell_prompt.sh ] && source ~/.shell_prompt.sh
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/fzf-extras.bash ] && source ~/fzf-extras.sh
 
@@ -101,22 +100,15 @@ if [ -f /usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc ]; the
   source '/usr/local/google/home/amaksimenka/google-cloud-sdk/path.bash.inc'
 fi
 
-# Java stuff
 export JAVABIN=/usr/bin/java
-
-# Linuxbrew
-export PATH="/usr/local/google/home/amaksimenka/.linuxbrew/bin:$PATH"
-export MANPATH="/usr/local/google/home/amaksimenka/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/usr/local/google/home/amaksimenka/.linuxbrew/share/info:$INFOPATH"
 export GOPATH=~/goproj
-
 export EDITOR='vim'
 export P4CONFIG=.p4config
 export P4EDITOR=$EDITOR
 export G4MULTIDIFF=1
 export P4DIFF=/google/data/ro/users/lo/lodato/git-multi-diff
 export P4MERGE=meldmerge.sh
-export PATH=~/bin:$PATH
+export PATH="/opt/nvim-linux64/bin:$PATH"
 
 LANG=en_US.UTF-8
 LC_ALL=en_US.UTF-8

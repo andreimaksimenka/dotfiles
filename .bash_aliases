@@ -11,3 +11,5 @@ alias buildfix='/google/data/ro/teams/ads-integrity/buildfix'
 alias bq=/google/bin/releases/bigquery-team/tools/bq.par
 alias helix_runner=/google/src/files/head/depot/google3/cloud/helix/tools/helix_runner
 alias cclean=/google/src/head/depot/google3/devtools/maintenance/cclean/cclean
+alias perf=/google/bin/releases/kernel-tools/perf5/usr/bin/perf5
+
