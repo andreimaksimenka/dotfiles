@@ -18,29 +18,22 @@ endif
 call plug#begin()
 
 " Vim enhancements
-Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'sedm0784/vim-you-autocorrect'
 Plug 'Valloric/ListToggle'
-Plug 'airblade/vim-gitgutter'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'easymotion/vim-easymotion'
 Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot' }
 Plug 'edkolev/tmuxline.vim'
-Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'ggreer/the_silver_searcher'
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }
-Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/is.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesToggle' }
-Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'terryma/vim-expand-region'
@@ -50,7 +43,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
-"Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
@@ -59,16 +51,30 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
+" CiderLSP
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-  let g:deoplete#enable_yarp = 0
+Plug 'hrsh7th/cmp-nvim-lua'
 endif
-Plug 'Shougo/neoinclude.vim'
-let g:deoplete#enable_at_startup = 1
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'neovim/nvim-lspconfig'
+Plug 'onsails/lspkind.nvim'
+
+" Diagnostics
+Plug 'kyazdani42/nvim-web-devicons'
+if has('nvim')
+  Plug 'folke/trouble.nvim'
+endif
+
+if !has('nvim')
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+endif
 
 if !filereadable(expand('~/.at_google'))
   Plug 'google/vim-codefmt'
@@ -97,6 +103,41 @@ if !filereadable(expand('~/.at_google'))
 else
   " Google-only
   source ~/.vimrc_at_google
+endif
+
+if has('nvim')
+" Require CiderLSP and Diagnostics modules
+" IMPORTANT: Must come after plugins are loaded
+lua << EOF
+  -- CiderLSP
+  vim.opt.completeopt = { "menu", "menuone", "noselect" }
+  require("lsp")
+
+  -- Diagnostics
+  require("diagnostics")
+EOF
+else
+au User lsp_setup call lsp#register_server({
+    \ 'name': 'CiderLSP',
+    \ 'cmd': {server_info->[
+    \   '/google/bin/releases/cider/ciderlsp/ciderlsp',
+    \   '--tooltag=vim-lsp',
+    \   '--noforward_sync_responses',
+    \ ]},
+    \ 'allowlist': [
+    \   'c', 'cpp', 'java', 'kotlin', 'proto', 'textpb', 'go', 'python'
+    \ ],
+    \})
+" Send async completion requests.
+" WARNING: Might interfere with other completion plugins.
+let g:lsp_async_completion = 1
+
+" Enable UI for diagnostics
+let g:lsp_signs_enabled = 1           " enable diagnostics signs in the gutter
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+" Automatically show completion options
+let g:asyncomplete_auto_popup = 1
 endif
 
 " Format options (full list at ":help fo-table"; see also ":help 'fo'")
@@ -230,55 +271,6 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" Auto reformat Rust when saving.
-let g:rustfmt_autosave = 0
-
-let g:racer_cmd = "/Users/amaksimenka/.cargo/bin/racer"
-let $RUST_SRC_PATH="/Users/amaksimenka/github/rust-master/src/"
-
-" tagbar
-let g:tagbar_left = 0
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-let g:tagbar_type_rust = {
-    \ 'ctagstype' : 'rust',
-    \ 'kinds' : [
-        \'T:types,type definitions',
-        \'f:functions,function definitions',
-        \'g:enum,enumeration names',
-        \'s:structure names',
-        \'m:modules,module names',
-        \'c:consts,static constants',
-        \'t:traits,traits',
-        \'i:impls,trait implementations',
-    \]
-    \}
-
 " IndentGuides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
@@ -296,7 +288,6 @@ endif
 nnoremap <leader>jd :YcmCompleter GoTo<cr>
 nnoremap <leader>bd :bufdo bd!<cr>
 nnoremap <leader>ct :checktime<cr>
-nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <leader>u :UndotreeToggle<cr>
 nnoremap <leader>m :Tags<cr>
 nnoremap <leader>n :NERDTreeFind<cr>
@@ -312,21 +303,6 @@ nnoremap <c-k>  :lpr<cr>
 " Reselect after indent so it can easily be repeated.
 vnoremap < <gv
 vnoremap > >gv
-
-" incsearch.vim
-let g:incsearch#auto_nohlsearch = 1
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
-" supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Runs ClangFormat for CC files. This is better than AutoFormatBuffer because it
 " leaves unchanged lines.
